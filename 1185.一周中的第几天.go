@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=1185 lang=golang
  *
  * [1185] 一周中的第几天
+ * 思路: 基姆拉尔森计算公式
  */
 
 // @lc code=start

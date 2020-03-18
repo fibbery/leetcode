@@ -14,21 +14,17 @@ func countCharacters(words []string, chars string) int {
 		charsCount[value]++
 	}
 	length := 0
-	for _, word := range words {
+	LOOP: for _, word := range words {
 		wordCount := make(map[rune]int)
 		for _, value := range word {
 			wordCount[value] ++
 		}
-		ok := true
 		for key, value := range wordCount {
 			if value > charsCount[key] {
-				ok = false
-				break
+				continue LOOP
 			}
 		}
-		if ok {
-			length += len(word)
-		}
+		length += len(word)
 	}
 	return length
 }

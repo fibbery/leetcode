@@ -14,12 +14,12 @@
  *     Next *Node
  * }
  */
-// package main
+package main
 
-// type Node struct {
-// 	Val               int
-// 	Left, Right, Next *Node
-// }
+type Node struct {
+	Val               int
+	Left, Right, Next *Node
+}
 
 type LevelNode struct {
 	*Node
@@ -27,6 +27,9 @@ type LevelNode struct {
 }
 
 func connect(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
 	queue := NewQueue()
 	queue.Offer(&LevelNode{Node: root, Level: 0})
 	nodes := make([]*LevelNode, 0)
@@ -53,7 +56,7 @@ func connect(root *Node) *Node {
 			continue
 		}
 
-		if i+1 <= i+nodes[i].Level {
+		if i+1 < (Power(2, nodes[i].Level+1) - 1) {
 			nodes[i].Right.Next = nodes[i+1].Left
 		}
 	}
@@ -72,10 +75,6 @@ func (q *Queue) Offer(node *LevelNode) {
 	q.data = append(q.data, node)
 }
 
-func (q *Queue) Poll() *LevelNode {
-	return q.data[0]
-}
-
 func (q *Queue) Pop() *LevelNode {
 	pop := q.data[0]
 	q.data = q.data[1:]
@@ -84,6 +83,30 @@ func (q *Queue) Pop() *LevelNode {
 
 func (q *Queue) Len() int {
 	return len(q.data)
+}
+
+func Power(x, num int) int {
+	if num == 0 {
+		return 1
+	}
+	return x * Power(x, num-1)
+}
+
+func main() {
+	data := []int{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+	root := createTree(data, 0)
+	connect(root)
+
+}
+
+func createTree(data []int, index int) *Node {
+	if index >= len(data) {
+		return nil
+	}
+	node := &Node{Val: data[index]}
+	node.Left = createTree(data, 2*index+1)
+	node.Right = createTree(data, 2*index+2)
+	return node
 }
 
 // @lc code=end

@@ -43,27 +43,31 @@
 // }
 
 func preorderTraversal(node *TreeNode) []int {
-	ret := make([]int, 0)
+	data := make([]int, 0)
 	for node != nil {
 		if node.Left != nil {
 			predecessor := node.Left
-			if predecessor.Right != nil && predecessor.Right != node {
+
+			//寻找前驱结点
+			for predecessor.Right != nil && predecessor.Right != node {
 				predecessor = predecessor.Right
 			}
+
 			if predecessor.Right == nil {
-				ret = append(ret, node.Val)
+				data = append(data, node.Val)
 				predecessor.Right = node
 				node = node.Left
 			} else {
-				predecessor.Right = nil
 				node = node.Right
+				predecessor.Right = nil
 			}
+
 		} else {
-			ret = append(ret, node.Val)
+			data = append(data, node.Val)
 			node = node.Right
 		}
 	}
-	return ret
+	return data
 }
 
 // @lc code=end

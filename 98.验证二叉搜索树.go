@@ -15,7 +15,7 @@
  */
 func isValidBST(root *TreeNode) bool {
 	if root == nil {
-		return false
+		return true
 	}
 	return validate(root, nil, nil)
 }
@@ -24,14 +24,13 @@ func validate(node, min, max *TreeNode) bool {
 	if node == nil {
 		return true
 	}
-	if min != nil && node.Val < min.Val {
+	if min != nil && node.Val <= min.Val {
 		return false
 	}
-	if max != nil && node.Val > max.Val {
+	if max != nil && node.Val >= max.Val {
 		return false
 	}
 	return validate(node.Left, min, node) && validate(node.Right, node, max)
 }
 
 // @lc code=end
-

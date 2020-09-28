@@ -3,6 +3,12 @@
  *
  * [116] 填充每个节点的下一个右侧节点指针
  */
+package main
+
+type Node struct {
+	Val               int
+	Left, Right, Next *Node
+}
 
 // @lc code=start
 /**
@@ -14,12 +20,6 @@
  *     Next *Node
  * }
  */
-package main
-
-type Node struct {
-	Val               int
-	Left, Right, Next *Node
-}
 
 type LevelNode struct {
 	*Node
@@ -90,23 +90,6 @@ func Power(x, num int) int {
 		return 1
 	}
 	return x * Power(x, num-1)
-}
-
-func main() {
-	data := []int{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
-	root := createTree(data, 0)
-	connect(root)
-
-}
-
-func createTree(data []int, index int) *Node {
-	if index >= len(data) {
-		return nil
-	}
-	node := &Node{Val: data[index]}
-	node.Left = createTree(data, 2*index+1)
-	node.Right = createTree(data, 2*index+2)
-	return node
 }
 
 // @lc code=end

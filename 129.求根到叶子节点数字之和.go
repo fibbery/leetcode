@@ -14,7 +14,22 @@
  * }
  */
 func sumNumbers(root *TreeNode) int {
-
+	return dfs(root, 0)
 }
+
+func dfs(node *TreeNode, presum int) int {
+	if node == nil {
+		return 0
+	}
+
+	presum = presum*10 + node.Val
+
+	if node.Left == nil && node.Right == nil {
+		return presum
+	}
+
+	return dfs(node.Left, presum) + dfs(node.Right, presum)
+}
+
 // @lc code=end
 

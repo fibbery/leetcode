@@ -6,18 +6,14 @@
 
 // @lc code=start
 func moveZeroes(nums []int) {
-	slow, fast := 0, 0
-	for fast < len(nums) {
-		if nums[fast] != 0 {
-			nums[slow] = nums[fast]
-			slow++
+	left, right := 0, 0
+	for right < len(nums) {
+		if nums[right] != 0 {
+			nums[left], nums[right] = nums[right], nums[left]
+			left++
 		}
-		fast++
-	}
-	for ; slow < len(nums); slow++ {
-		nums[slow] = 0
+		right++
 	}
 }
-
 // @lc code=end
 

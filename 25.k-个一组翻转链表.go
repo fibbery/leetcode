@@ -16,38 +16,30 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	if k == 1 {
 		return head
 	}
-	dummy := &ListNode{
-		Val:  0,
-		Next: head,
-	}
-	prev, end := dummy, dummy
-	for end.Next != nil {
-		for index := k; index > 0 && end != nil; index-- {
-			end = end.Next
+	a, b := head, head
+	for i := 0; i < k; i++ {
+		if b == nil {
+			return head
 		}
-		if end == nil {
-			break
-		}
-		//临时存储 准备翻转区域的起点以及未翻转区域的起点
-		start, next := prev.Next, end.Next
-		//对准备翻转区域的数据进行翻转
-		end.Next = nil
-		prev.Next = reverse(start)
-		start.Next = next
-		prev, end = start, start
+		b = b.Next
 	}
-	return dummy.Next
+	newHead := reverse(a, b)
+	a.Next = reverseKGroup(b, k)
+	return newHead
 }
 
-func reverse(head *ListNode) *ListNode {
-	var prev *ListNode
-	curr := head
-	for curr != nil {
-		next := curr.Next
-		curr.Next = prev
-		prev, curr = curr, next
+var successor *ListNode = nil
+
+func reverse(a, b *ListNode) *ListNode {
+	if a.Next == b {
+		successor = b
+		return a
 	}
-	return prev
+	last := reverse(a.Next, b)
+	a.Next.Next = a
+	a.Next = successor
+	return last
 }
+
 // @lc code=end
 

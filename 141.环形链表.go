@@ -1,3 +1,7 @@
+package main
+
+import "fmt"
+
 /*
  * @lc app=leetcode.cn id=141 lang=golang
  *
@@ -26,3 +30,19 @@ func hasCycle(head *ListNode) bool {
 
 // @lc code=end
 
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func main() {
+	a := &ListNode{Val: 1}
+	b := &ListNode{Val: 2}
+	c := &ListNode{Val: 3}
+	d := &ListNode{Val: 4}
+	a.Next = b
+	b.Next = c
+	c.Next = d
+	d.Next = b
+	fmt.Println(hasCycle(a))
+}

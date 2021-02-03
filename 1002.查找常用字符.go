@@ -5,14 +5,6 @@
  */
 package main
 
-import (
-	"fmt"
-)
-
-func main() {
-	fmt.Println(commonChars([]string{"acabcddd", "bcbdbcbd", "baddbadb", "cbdddcac", "aacbcccd", "ccccddda", "cababaab", "addcaccd"}))
-}
-
 // @lc code=start
 func commonChars(A []string) []string {
 	minFreq := [26]int{}

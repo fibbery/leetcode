@@ -7,8 +7,6 @@
 // Package main provides ...
 package main
 
-import "fmt"
-
 // @lc code=start
 func prefixesDivBy5(A []int) (ret []bool) {
 	x := 0
@@ -20,6 +18,3 @@ func prefixesDivBy5(A []int) (ret []bool) {
 }
 
 // @lc code=end
-func main() {
-	fmt.Println(prefixesDivBy5([]int{0, 1, 1, 1, 1, 1}))
-}

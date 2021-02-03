@@ -6,8 +6,6 @@
  */
 package main
 
-import "fmt"
-
 // @lc code=start
 func twoSum(nums []int, target int) []int {
 	dict := make(map[int]int)
@@ -24,7 +22,3 @@ func twoSum(nums []int, target int) []int {
 }
 
 // @lc code=end
-
-func main() {
-	fmt.Println("hello world")
-}
